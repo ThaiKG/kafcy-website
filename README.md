@@ -4,7 +4,7 @@ A React + Vite + Tailwind landing page for KaFCy DESIGN&BUILD, a Katy,
 TX design-build contractor. Business name, phone, email, address, and
 service area are the real published details from kafcy.com — trust-bar
 stats and project descriptions are still illustrative placeholder copy
-and should be swapped for real numbers and project photos before launch.
+and should be swapped for real numbers and project photos before launch. Ok
 
 ## Run it locally
 
