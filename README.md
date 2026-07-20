@@ -28,10 +28,16 @@ host (Netlify, Vercel, Cloudflare Pages, S3, etc.).
 
 ## Things to customize before launch
 
-- **Trust-bar stats** — `TrustBar.jsx` holds illustrative placeholder
-  copy; swap in verifiable numbers once available.
 - **Colors / fonts** — defined once in `tailwind.config.js` under
   `theme.extend.colors` and `fontFamily`.
+
+## Adding a hero photo
+
+Drop a `.jpg` / `.jpeg` / `.png` / `.webp` file into `src/assets/hero/` and
+it becomes the Hero section's full-bleed background automatically — no code
+changes needed. If more than one image is added, the first by filename
+wins, so a single well-named file (e.g. `hero.jpg`) is simplest. With no
+image present, the section falls back to a plain espresso background.
 
 ## Adding project photos
 
@@ -76,12 +82,11 @@ real without standing up a backend:
 src/
   components/
     Nav.jsx          Header with logo and phone/CTA
-    Hero.jsx          Headline + blueprint-style building illustration
-    TrustBar.jsx       Stat row (design-build, HQ, team, services)
+    Hero.jsx          Headline over a full-bleed background photo
     About.jsx           Company origin story
     Services.jsx          Service offering cards (6 disciplines)
-    Process.jsx          4-step how-it-works
-    Projects.jsx           Selected work / portfolio grid
+    Reviews.jsx             Client reviews placeholder (none yet)
+    Projects.jsx              Selected work / portfolio grid
     Contact.jsx              Quote request form + contact info
     Footer.jsx
   App.jsx

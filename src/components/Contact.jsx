@@ -12,7 +12,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="bg-paper">
+    <section id="contact" className="bg-paper border-t border-charcoal/10">
       <div className="max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28">
         <div className="grid md:grid-cols-5 gap-12 md:gap-16">
           <div className="md:col-span-2">

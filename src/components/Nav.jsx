@@ -3,7 +3,7 @@ import { Phone } from "lucide-react";
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
-  { label: "Process", href: "#process" },
+  { label: "Reviews", href: "#reviews" },
   { label: "Work", href: "#work" },
   { label: "Contact", href: "#contact" },
 ];
