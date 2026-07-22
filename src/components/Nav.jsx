@@ -31,7 +31,7 @@ export default function Nav() {
               KaFCy DESIGN&amp;BUILD
             </span>
           )}
-          <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#315c7e] mt-1">
+          <span className="font-mono text-[10px] font-semibold tracking-[0.2em] uppercase text-[#deb24b] mt-1">
             Design &amp; Build Contractor
           </span>
         </a>
