@@ -1,5 +1,16 @@
 import { Phone } from "lucide-react";
 
+// Drop a logo file into src/assets/logo/ (.png/.jpg/.jpeg/.svg/.webp) to use
+// it in the header — no code changes needed. Falls back to the text
+// wordmark until one is added. If more than one file is present, the first
+// by filename wins.
+const logoModules = import.meta.glob("../assets/logo/*.{png,jpg,jpeg,svg,webp}", {
+  eager: true,
+  import: "default",
+});
+const logoPath = Object.keys(logoModules).sort()[0];
+const logo = logoPath ? logoModules[logoPath] : null;
+
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
@@ -11,14 +22,20 @@ const navLinks = [
 export default function Nav() {
   return (
     <header className="sticky top-0 z-40 bg-paper/95 backdrop-blur border-b border-charcoal/15">
-      <div className="max-w-6xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-6">
-        <a href="#top" className="flex flex-col leading-none shrink-0">
-          <span className="font-display text-xl md:text-2xl font-semibold tracking-tight text-espresso">
-            KaFCy DESIGN&amp;BUILD
-          </span>
-          <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-steel mt-1">
-            Design &amp; Build Contractors
-          </span>
+      <div className="max-w-6xl mx-auto px-6 md:px-10 h-24 md:h-28 flex items-center justify-between gap-6">
+        <a href="#top" className="flex items-center shrink-0">
+          {logo ? (
+            <img src={logo} alt="KaFCy Design & Build" className="h-16 md:h-20 w-auto" />
+          ) : (
+            <div className="flex flex-col leading-none">
+              <span className="font-display text-xl md:text-2xl font-semibold tracking-tight text-espresso">
+                KaFCy DESIGN&amp;BUILD
+              </span>
+              <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-steel mt-1">
+                Design &amp; Build Contractors
+              </span>
+            </div>
+          )}
         </a>
 
         <nav className="hidden lg:flex items-center gap-8">

@@ -31,6 +31,15 @@ host (Netlify, Vercel, Cloudflare Pages, S3, etc.).
 - **Colors / fonts** — defined once in `tailwind.config.js` under
   `theme.extend.colors` and `fontFamily`.
 
+## Adding a logo
+
+Drop a `.png` / `.jpg` / `.jpeg` / `.svg` / `.webp` file into `src/assets/logo/`
+and it replaces the text wordmark in the header automatically — no code
+changes needed. If more than one file is present, the first by filename
+wins. With no logo file present, the header falls back to the plain text
+wordmark ("KaFCy DESIGN&BUILD"). A transparent background works best
+against the header's cream background.
+
 ## Adding a hero photo
 
 Drop a `.jpg` / `.jpeg` / `.png` / `.webp` file into `src/assets/hero/` and

@@ -6,9 +6,9 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Keeps anchor-jumped sections from tucking under the sticky header (h-20) */
+/* Keeps anchor-jumped sections from tucking under the sticky header (h-28) */
 section[id] {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 7rem;
 }
 
 body {
