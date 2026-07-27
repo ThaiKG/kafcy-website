@@ -50,7 +50,7 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28">
         <div className="max-w-lg mb-14">
           <p className="font-mono text-sm font-medium tracking-[0.15em] uppercase text-rust mb-3">
-            Selected Work
+            Selected Projects
           </p>
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-espresso">
             Community, industrial, and commercial builds.
