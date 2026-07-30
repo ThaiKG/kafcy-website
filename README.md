@@ -74,16 +74,25 @@ To add a fifth project, add a new folder plus a matching entry (`slug`,
 
 ## Wiring the contact form
 
-The form in `Contact.jsx` is UI-only right now — submitting it just shows a
-confirmation message, it doesn't send anywhere. Easiest ways to make it
-real without standing up a backend:
+`Contact.jsx` has no backend to POST to on GitHub Pages, so submitting the
+form builds a `mailto:` link (name, phone, email, project type, and
+message pre-filled into the subject/body) and hands it to the browser via
+`window.location.href`. This opens the visitor's own email client with a
+draft addressed to `paul.nguyen@kafcy.com` — they still have to hit send
+on their end, which is why the confirmation copy says "opened" rather than
+"received".
 
-- **[Formspree](https://formspree.io)** — point the form's `onSubmit` at a
-  `fetch()` call to your Formspree endpoint, or swap the `<form>` to POST
-  directly to it.
-- **[Resend](https://resend.com) or a serverless function** — if you're
-  deploying on Netlify/Vercel, add a small function that emails you the
-  submission.
+To change the recipient address, edit `RECIPIENT` at the top of
+`Contact.jsx`.
+
+Tradeoffs to know about:
+- Depends on the visitor having a mail client configured (desktop mailto
+  links are unreliable on some mobile browsers/webviews).
+- No submissions dashboard or delivery guarantee — if that matters more
+  than avoiding a third-party signup, a service like
+  [Web3Forms](https://web3forms.com) or [Formspree](https://formspree.io)
+  (`fetch`-POST to their API, no backend needed) is a safer bet for a
+  business that depends on leads landing reliably.
 
 ## Project structure
 

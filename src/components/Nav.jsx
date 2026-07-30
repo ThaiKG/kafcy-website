@@ -1,4 +1,5 @@
-import { Phone } from "lucide-react";
+import { useState } from "react";
+import { Phone, Menu, X } from "lucide-react";
 
 // Drop a logo file into src/assets/logo/ (.png/.jpg/.jpeg/.svg/.webp) to use
 // it in the header — no code changes needed. Falls back to the text
@@ -20,6 +21,8 @@ const navLinks = [
 ];
 
 export default function Nav() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-40 bg-paper/95 backdrop-blur border-b border-charcoal/15">
       <div className="max-w-6xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-6">
@@ -62,8 +65,42 @@ export default function Nav() {
           >
             Request a Quote
           </a>
+          <button
+            type="button"
+            onClick={() => setIsOpen((open) => !open)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+            className="lg:hidden flex h-10 w-10 items-center justify-center text-charcoal hover:text-rust transition-colors"
+          >
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
       </div>
+
+      {isOpen && (
+        <nav className="lg:hidden border-t border-charcoal/15 bg-paper">
+          <div className="max-w-6xl mx-auto px-6 md:px-10 py-4 flex flex-col gap-1">
+            {navLinks.map(({ label, href }) => (
+              <a
+                key={href}
+                href={href}
+                onClick={() => setIsOpen(false)}
+                className="py-3 text-base font-medium text-charcoal/80 hover:text-rust transition-colors border-b border-charcoal/10 last:border-b-0"
+              >
+                {label}
+              </a>
+            ))}
+            <a
+              href="tel:+18322994461"
+              onClick={() => setIsOpen(false)}
+              className="sm:hidden flex items-center gap-2 py-3 text-base font-medium text-charcoal"
+            >
+              <Phone size={16} strokeWidth={2} />
+              (832) 299-4461
+            </a>
+          </div>
+        </nav>
+      )}
     </header>
   );
 }

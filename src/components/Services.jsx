@@ -1,42 +1,60 @@
 import {
     Warehouse,
     Compass,
+    Building,
     Building2,
     ClipboardList,
     HardHat,
-    Ruler,
+    Factory,
+    Wrench,
+    Hammer,
 } from "lucide-react";
 
 const services = [
     {
         icon: Warehouse,
-        title: "Metal Building Design & Construction",
-        desc: "Pre-engineered and custom metal buildings, drawn to scale and engineered for clear span before steel is ordered.",
+        title: "Pre-Engineered Metal Buildings (PEMBs)",
+        desc: "Clear-span steel buildings, drawn to scale and engineered before steel is ordered.",
     },
     {
-        icon: Compass,
-        title: "Architectural Design",
-        desc: "In-house architectural drawings carry your project from concept to a permit-ready set, no outside firm required.",
-    },
-    {
-        icon: Building2,
-        title: "Commercial & Industrial Construction",
-        desc: "Warehouses, plazas, and community facilities built to a fixed schedule, with one point of contact throughout.",
-    },
-    {
-        icon: ClipboardList,
-        title: "Construction Management",
-        desc: "Budget, schedule, and subcontractors managed under one team so surprises get caught on paper, not on site.",
+        icon: Building,
+        title: "Built For Every Industry",
+        desc: "Warehouses, retail centers, auto shops, salons, temples, churches, residences, barndominiums, and chicken farms — if it needs a metal building, we've built it.",
     },
     {
         icon: HardHat,
-        title: "General Contracting",
-        desc: "Licensed general contracting for renovations, tenant improvements, and ground-up builds across the Houston area.",
+        title: "Turnkey Construction Solutions",
+        desc: "From concept to completion, including foundation, framing, roofing, and finishing.",
     },
     {
-        icon: Ruler,
-        title: "Facility Surveys",
-        desc: "Field measurements and condition assessments that give you an accurate baseline before design work begins.",
+        icon: Compass,
+        title: "Custom Design & Engineering",
+        desc: "Tailored structural solutions to meet unique project requirements.",
+    },
+    {
+        icon: Factory,
+        title: "Fabrication & Supply",
+        desc: "High-quality steel components manufactured to precision standards.",
+    },
+    {
+        icon: Hammer,
+        title: "Commercial Remodeling & Renovation",
+        desc: "Interior build-outs, office remodels, restaurant renovations, retail space updates, and medical buildings.",
+    },
+    {
+        icon: Building2,
+        title: "Design & Build",
+        desc: "Integrated design and construction solutions that streamline project delivery and improve coordination.",
+    },
+    {
+        icon: Wrench,
+        title: "Maintenance & Expansion Services",
+        desc: "Retrofit, modification, and expansion of existing metal buildings.",
+    },
+    {
+        icon: ClipboardList,
+        title: "Building Permit Service",
+        desc: "Handling blueprints, paperwork, codes, and coordination for small commercial buildings across all 50 U.S. states.",
     },
 ];
 

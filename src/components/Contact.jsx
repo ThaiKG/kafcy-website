@@ -1,14 +1,35 @@
 import { useState } from "react";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
+const RECIPIENT = "paul.nguyen@kafcy.com";
+
+// No backend on GitHub Pages, so the "submit" just hands the visitor's
+// mail client a pre-filled draft — they still have to hit send on their
+// end, which is why the confirmation copy below says "opened", not
+// "received".
+function buildMailto(data) {
+  const subject = `Quote request — ${data.get("name") || "New inquiry"}`;
+  const body = [
+    `Name: ${data.get("name")}`,
+    `Phone: ${data.get("phone")}`,
+    `Email: ${data.get("email")}`,
+    `Project type: ${data.get("projectType")}`,
+    "",
+    "Project details:",
+    data.get("message") || "(none provided)",
+  ].join("\n");
+  return `mailto:${RECIPIENT}?subject=${encodeURIComponent(
+    subject
+  )}&body=${encodeURIComponent(body)}`;
+}
+
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | submitted
 
   function handleSubmit(e) {
     e.preventDefault();
-    // NOTE: this form is UI-only. Wire it to a real endpoint before
-    // going live — see the README for a couple of easy options.
-    setSubmitted(true);
+    window.location.href = buildMailto(new FormData(e.target));
+    setStatus("submitted");
   }
 
   return (
@@ -24,8 +45,7 @@ export default function Contact() {
             </h2>
             <p className="text-charcoal/75 leading-relaxed mb-8">
               We reply within one business day with next steps for a site
-              survey. Serving Katy, Fulshear, Cypress &amp; the greater
-              Houston area. Prefer to talk it through first? Call the number
+              survey. Prefer to talk it through first? Call the number
               below.
             </p>
 
@@ -58,13 +78,15 @@ export default function Contact() {
 
           <div className="md:col-span-3 reg-marks text-rust/25">
             <div className="border border-charcoal/15 p-7 md:p-10 bg-white/40">
-              {submitted ? (
+              {status === "submitted" ? (
                 <div className="py-10 text-center">
                   <p className="font-display text-2xl text-espresso mb-2">
-                    Request received.
+                    Email draft opened.
                   </p>
                   <p className="text-charcoal/70 text-sm">
-                    We'll be in touch within one business day.
+                    Your request is pre-filled in your email app — hit send
+                    there to complete it. Nothing to reach us if it didn't
+                    open? Call (832) 299-4461 instead.
                   </p>
                 </div>
               ) : (
@@ -100,14 +122,17 @@ export default function Contact() {
                     <span className="text-charcoal/80">Project type</span>
                     <select
                       name="projectType"
-                      defaultValue="Metal Building Design & Construction"
+                      defaultValue="Pre-Engineered Metal Building (PEMBs)"
                       className="border border-charcoal/25 bg-paper px-3 py-2.5 text-charcoal focus:border-rust outline-none"
                     >
-                      <option>Metal Building Design &amp; Construction</option>
-                      <option>Commercial / Industrial Construction</option>
-                      <option>Architectural Design</option>
-                      <option>Facility Survey</option>
-                      <option>Construction Management</option>
+                      <option>Pre-Engineered Metal Building (PEMBs)</option>
+                      <option>Turnkey Construction Solutions</option>
+                      <option>Custom Design &amp; Engineering</option>
+                      <option>Fabrication &amp; Supply</option>
+                      <option>Commercial Remodeling &amp; Renovation</option>
+                      <option>Design &amp; Build</option>
+                      <option>Maintenance &amp; Expansion Services</option>
+                      <option>Building Permit Service</option>
                       <option>Other</option>
                     </select>
                   </label>
