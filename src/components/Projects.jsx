@@ -1,48 +1,8 @@
-import { Landmark, Factory, Boxes, Store } from "lucide-react";
 import ProjectCard from "./ProjectCard.jsx";
+import { projects } from "../data/projects.js";
+import { getProjectImages } from "../data/projectImages.js";
 
-// Drop image files into src/assets/projects/<slug>/ — every file found is
-// picked up automatically, ordered by filename (e.g. 01.jpg, 02.jpg, ...).
-const imageModules = import.meta.glob(
-  "../assets/projects/*/*.{jpg,jpeg,png,webp}",
-  { eager: true, import: "default" }
-);
-
-const imagesBySlug = {};
-for (const path in imageModules) {
-  const [, slug] = path.match(/projects\/([^/]+)\//);
-  (imagesBySlug[slug] ??= []).push({ path, url: imageModules[path] });
-}
-for (const slug in imagesBySlug) {
-  imagesBySlug[slug].sort((a, b) => a.path.localeCompare(b.path));
-}
-
-const projects = [
-  {
-    slug: "thien-hau-temple",
-    icon: Landmark,
-    category: "Community",
-    title: "Thien Hau Temple",
-  },
-  {
-    slug: "g-style-building",
-    icon: Factory,
-    category: "Industrial",
-    title: "G-Style Building",
-  },
-  {
-    slug: "nguyen-office-warehouse",
-    icon: Boxes,
-    category: "Combination",
-    title: "Nguyen Office & Warehouse",
-  },
-  {
-    slug: "hon-tam-plaza",
-    icon: Store,
-    category: "Commercial",
-    title: "Hon Tam Plaza",
-  },
-];
+const featuredProjects = projects.filter((p) => p.featured);
 
 export default function Projects() {
   return (
@@ -58,15 +18,24 @@ export default function Projects() {
         </div>
 
         <div className="grid sm:grid-cols-2 gap-6">
-          {projects.map(({ slug, icon, category, title }) => (
+          {featuredProjects.map(({ slug, icon, category, title }) => (
             <ProjectCard
               key={slug}
               icon={icon}
               category={category}
               title={title}
-              images={(imagesBySlug[slug] || []).map((i) => i.url)}
+              images={getProjectImages(slug)}
             />
           ))}
+        </div>
+
+        <div className="mt-10 text-center">
+          <a
+            href="/projects/"
+            className="inline-flex items-center justify-center border border-charcoal/25 text-charcoal font-medium px-6 py-3.5 hover:border-rust hover:text-rust transition-colors"
+          >
+            View All Projects
+          </a>
         </div>
       </div>
     </section>

@@ -48,9 +48,10 @@ changes needed. If more than one image is added, the first by filename
 wins, so a single well-named file (e.g. `hero.jpg`) is simplest. With no
 image present, the section falls back to a plain espresso background.
 
-## Adding project photos
+## Adding projects
 
-Each project in `Projects.jsx` has a `slug` (e.g. `thien-hau-temple`)
+Every project lives in one place: the `projects` array in
+`src/data/projects.js`. Each entry has a `slug` (e.g. `thien-hau-temple`)
 that maps to a folder under `src/assets/projects/`:
 
 ```
@@ -69,8 +70,15 @@ hatched icon placeholder; one image shows with no arrows; two or more
 show left/right arrows and a "2 / 4" counter so visitors can click
 through them (`ProjectCard.jsx`).
 
-To add a fifth project, add a new folder plus a matching entry (`slug`,
-`icon`, `category`, `title`) to the `projects` array in `Projects.jsx`.
+To add a new project, add a new folder plus a matching entry (`slug`,
+`icon`, `category`, `title`, `featured`) to that array.
+
+**Every** project shows on the full `/projects/` page (linked from the nav
+bar). Only the ones marked `featured: true` also show in the "Selected
+Projects" teaser on the homepage — so as the list grows, mark new entries
+`featured: false` to keep the homepage short while they're still
+browsable on the dedicated page. The homepage teaser also links to
+`/projects/` via a "View All Projects" button.
 
 ## Wiring the contact form
 
@@ -96,18 +104,31 @@ Tradeoffs to know about:
 
 ## Project structure
 
+This is a two-page static site: the homepage and a standalone
+`/projects/` page, each with its own HTML entry point and React root
+(no client-side router — see "Adding projects" above for why).
+
 ```
+index.html            Homepage entry point
+projects/index.html   Standalone /projects/ page entry point
 src/
+  main.jsx             Mounts <App /> for the homepage
+  entry-projects.jsx    Mounts <ProjectsPage /> for /projects/
+  App.jsx
+  index.css
+  data/
+    projects.js          The one place project entries live
+    projectImages.js      Loads src/assets/projects/<slug>/ photos
+  pages/
+    ProjectsPage.jsx       Full project grid (Nav + all projects + Footer)
   components/
     Nav.jsx          Header with logo and phone/CTA
     Hero.jsx          Headline over a full-bleed background photo
     About.jsx           Company origin story
-    Services.jsx          Service offering cards (6 disciplines)
+    Services.jsx          Service offering cards
     Reviews.jsx             Client reviews placeholder (none yet)
-    Projects.jsx              Selected work / portfolio grid
+    Projects.jsx              Homepage "Selected Projects" teaser grid
+    ProjectCard.jsx            Photo carousel + lightbox for one project
     Contact.jsx              Quote request form + contact info
     Footer.jsx
-  App.jsx
-  index.css
-  main.jsx
 ```

@@ -12,12 +12,16 @@ const logoModules = import.meta.glob("../assets/logo/*.{png,jpg,jpeg,svg,webp}",
 const logoPath = Object.keys(logoModules).sort()[0];
 const logo = logoPath ? logoModules[logoPath] : null;
 
+// Absolute paths (with a leading "/") so these resolve correctly whether
+// the visitor is on the homepage or the standalone /projects/ page:
+// same-page hash links still just scroll (browsers don't reload when only
+// the hash changes), while from /projects/ they navigate home first.
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Projects", href: "#work" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/#services" },
+  { label: "Reviews", href: "/#reviews" },
+  { label: "Projects", href: "/projects/" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Nav() {
@@ -26,7 +30,7 @@ export default function Nav() {
   return (
     <header className="sticky top-0 z-40 bg-paper/95 backdrop-blur border-b border-charcoal/15">
       <div className="max-w-6xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-6">
-        <a href="#top" className="flex flex-col items-start leading-none shrink-0">
+        <a href="/#top" className="flex flex-col items-start leading-none shrink-0">
           {logo ? (
             <img src={logo} alt="KaFCy Design & Build" className="h-10 md:h-12 w-auto" />
           ) : (
@@ -60,7 +64,7 @@ export default function Nav() {
             (832) 299-4461
           </a>
           <a
-            href="#contact"
+            href="/#contact"
             className="bg-espresso text-paper text-sm font-medium px-4 py-2.5 md:px-5 hover:bg-rust transition-colors"
           >
             Request a Quote
