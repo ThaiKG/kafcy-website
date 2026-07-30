@@ -71,14 +71,17 @@ show left/right arrows and a "2 / 4" counter so visitors can click
 through them (`ProjectCard.jsx`).
 
 To add a new project, add a new folder plus a matching entry (`slug`,
-`icon`, `category`, `title`, `featured`) to that array.
+`icon`, `category`, `title`, `featured`) at the **top** of that array,
+with `featured: true` — both the homepage teaser and the `/projects/`
+page render in array order, so newest-first means putting new entries
+first.
 
 **Every** project shows on the full `/projects/` page (linked from the nav
 bar). Only the ones marked `featured: true` also show in the "Selected
-Projects" teaser on the homepage — so as the list grows, mark new entries
-`featured: false` to keep the homepage short while they're still
-browsable on the dedicated page. The homepage teaser also links to
-`/projects/` via a "View All Projects" button.
+Projects" teaser on the homepage — so once the homepage teaser gets too
+long, flip older entries to `featured: false` to keep it short; they'll
+still be browsable on the dedicated page. The homepage teaser also links
+to `/projects/` via a "View All Projects" button.
 
 ## Wiring the contact form
 
