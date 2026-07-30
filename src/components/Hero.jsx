@@ -26,7 +26,7 @@ export default function Hero() {
       <div className="relative max-w-6xl mx-auto px-6 md:px-10 pt-16 pb-20 md:pt-28 md:pb-32">
         <div className="max-w-2xl">
           <p className="font-mono text-sm font-medium tracking-[0.15em] uppercase text-brass mb-5">
-            Design-Build Contractor — Katy, TX — Greater Houston
+            Design-Build Contractor
           </p>
           <h1 className="font-display text-4xl sm:text-5xl md:text-[3.25rem] leading-[1.05] font-semibold text-paper text-balance">
             Transforming Visions into Reality
